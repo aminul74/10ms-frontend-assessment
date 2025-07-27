@@ -1,12 +1,13 @@
 import React from "react";
+import InstructorImage from "../assets/ms_onset.jpg";
 
-const CourseInfo: React.FC = () => {
+const CourseInstructorInfo: React.FC = () => {
   return (
-    <div>
+    <div className="text-left">
       <h2 className="text-xl font-semibold mb-3">কোর্স ইন্সট্রাক্টর</h2>
-      <div className="flex items-center bg-white shadow rounded p-4">
+      <div className="flex items-center bg-white rounded p-4 py-8 shadow-2xs border border-gray-200">
         <img
-          src="https://i.ibb.co/FWxgJ2h/munzereen.jpg"
+          src={InstructorImage}
           alt="Munzereen Shahid"
           className="w-16 h-16 rounded-full object-cover mr-4"
         />
@@ -25,4 +26,4 @@ const CourseInfo: React.FC = () => {
   );
 };
 
-export default CourseInfo;
+export default CourseInstructorInfo;

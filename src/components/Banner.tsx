@@ -4,7 +4,7 @@ const Banner: React.FC = () => {
   const [isRecommended, setIsRecommended] = useState<boolean>(true);
 
   return (
-    <div className="relative bg-[#0e082d] pb-40 -z-20">
+    <div className="bg-[#0e082d] pb-40">
       {isRecommended && (
         <div className="w-full py-3 px-4 text-white">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">

@@ -15,7 +15,7 @@ const features = [
 const CourseFeatures: React.FC = () => {
   return (
     <div className="bg-white rounded shadow p-4">
-      <h2 className="text-xl font-semibold mb-4">এই কোর্সে যা থাকবে</h2>
+      <h2 className="text-xl font-semibold mb-4">এই কোর্সে যা থাকবে XX</h2>
       <ul className="list-disc list-inside space-y-2 text-gray-700">
         {features.map((item, index) => (
           <li key={index}>{item}</li>

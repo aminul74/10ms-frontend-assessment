@@ -8,10 +8,46 @@ import PdfCard from "../components/PdfCard";
 import CourseGuides from "../components/CourseGuides";
 import VideoOverview from "../components/VideoOverview";
 import CourseHeadlineSlider from "../components/CourseHeadlineSlider";
+import type { ApiResponse, ApiData } from "../types/api";
 
 const CoursePage: React.FC = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [courseData, setCourseData] = useState<ApiData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const videoPreviewRef = useRef<HTMLDivElement>(null);
+
+  const fetchCourseData = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        "https://api.10minuteschool.com/discovery-service/api/v1/products/ielts-course?lang=en&=",
+        {
+          method: "GET",
+          headers: {
+            "X-TENMS-SOURCE-PLATFORM": "web",
+            accept: "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data: ApiResponse = await response.json();
+      setCourseData(data.data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+      console.error("Failed to fetch course data:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCourseData();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,9 +66,25 @@ const CoursePage: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-lg">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-lg text-red-600">Error: {error}</div>
+      </div>
+    );
+  }
+
   return (
     <main className="min-h-screen w-screen">
-      <Banner />
+      <Banner courseData={courseData} />
 
       <div className="container ">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

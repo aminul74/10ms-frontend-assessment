@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import BannerImage from "../assets/banner_image.jpeg";
+import type { ApiData } from "../types/api";
 
-const Banner: React.FC = () => {
+interface BannerProps {
+  courseData: ApiData | null;
+}
+const Banner: React.FC<BannerProps> = ({ courseData }) => {
   const [isRecommended, setIsRecommended] = useState<boolean>(true);
 
   return (
@@ -52,7 +56,7 @@ const Banner: React.FC = () => {
         <div className="max-w-7xl px-4 pt-10 text-white">
           <div className="max-w-2xl">
             <h2 className="text-2xl md:text-4xl font-bold">
-              IELTS Course by Munzereen Shahid
+              {courseData ? courseData.title : "Unkown Course Title"}
             </h2>
             <div className="flex items-center gap-2 mt-2">
               <span className="text-yellow-400 text-lg">★★★★★</span>
@@ -60,11 +64,15 @@ const Banner: React.FC = () => {
                 (82.6% শিক্ষার্থী কোর্স শেষে ৫ রেটিং দিয়েছেন)
               </span>
             </div>
-            <p className="text-sm text-gray-300 mt-4 leading-relaxed">
-              Academic IELTS এবং General Training IELTS -এর সফল প্রস্তুতির জন্য
-              একটি কোর্সই যথেষ্ট! দেশের IELTS Instructor এবং গাইডলাইনে আপনার
-              কাঙ্ক্ষিত ব্যান্ড স্কোরটি অর্জন করুন আমাদের IELTS Course–এ।
-            </p>
+
+            <p
+              className="text-sm text-gray-300 mt-4 leading-relaxed"
+              dangerouslySetInnerHTML={{
+                __html: courseData
+                  ? courseData.description
+                  : "Unknown course description.",
+              }}
+            />
           </div>
         </div>
       </div>

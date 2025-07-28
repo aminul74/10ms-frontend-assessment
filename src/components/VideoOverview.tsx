@@ -1,30 +1,3 @@
-// import React, { useState } from "react";
-
-// const VideoOverview: React.FC = () => {
-//   const [isOpen, setIsOpen] = useState(false);
-
-//   return (
-//     <div className="bg-white rounded shadow">
-//       <button
-//         className="w-full text-left px-6 py-4 font-semibold text-green-600 border-b"
-//         onClick={() => setIsOpen(!isOpen)}
-//       >
-//         কোর্সের ভিডিও
-//         <span className="float-right">{isOpen ? "▲" : "▼"}</span>
-//       </button>
-//       {isOpen && (
-//         <div className="p-4 space-y-2 text-gray-700">
-//           <p>▶️ Introduction</p>
-//           <p>▶️ Writing IELTS Vocabulary</p>
-//           <p>▶️ Video: IELTS Overview</p>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default VideoOverview;
-
 import { useState } from "react";
 
 type ContentItem = {
@@ -40,7 +13,7 @@ type ContentSection = {
 
 const contentList: ContentSection[] = [
   {
-    heading: "INTRODUCTION",
+    heading: "Introduction",
     items: [
       {
         title: "Video: IELTS: Introduction",
@@ -214,7 +187,7 @@ const VideoOverview = () => {
               className="flex justify-between items-center cursor-pointer p-3 hover:bg-gray-50"
             >
               <div className="flex items-center space-x-2">
-                <span className="text-lg text-gray-800 font-medium">
+                <span className="text-sm text-gray-800 font-semibold">
                   {section.heading}
                 </span>
               </div>
@@ -227,7 +200,7 @@ const VideoOverview = () => {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    className="size-6 transform rotate-180 transition-transform duration-200 ease-in-out"
+                    className="size-5 transform rotate-180 transition-transform duration-200 ease-in-out"
                   >
                     <path
                       strokeLinecap="round"
@@ -242,7 +215,7 @@ const VideoOverview = () => {
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    className="size-6 transform rotate-0 transition-transform duration-200 ease-in-out"
+                    className="size-5 transform rotate-0 transition-transform duration-200 ease-in-out"
                   >
                     <path
                       strokeLinecap="round"
@@ -255,7 +228,7 @@ const VideoOverview = () => {
             </div>
 
             {expanded.has(index) && (
-              <div className="pl-8 pr-4 pb-4 transition-all duration-300 ease-in-out space-y-3">
+              <div className="pl-4 pr-4 pb-4 transition-all duration-300 ease-in-out space-y-3">
                 {section.items.map((item, itemIndex) => (
                   <div
                     key={itemIndex}
@@ -293,14 +266,14 @@ const VideoOverview = () => {
                           />
                         </svg>
                       )}
-                      <p className="text-gray-800 truncate">{item.title}</p>
+                      <p className="text-sm text-[#737373] truncate ml-2">{item.title}</p>
                     </div>
                     {item.downloadLink ? (
                       <a
                         href={item.downloadLink}
-                        className="text-blue-600 text-sm hover:underline whitespace-nowrap ml-2"
+                        className="!text-green-600 text-sm hover:underline whitespace-nowrap ml-2"
                       >
-                        {item.type === "video" ? "ফ্রি দেখুন" : "ডাউনলোড করুন"}
+                        {item.type === "video" ? "ফ্রি দেখুন" : ""}
                       </a>
                     ) : null}
                   </div>

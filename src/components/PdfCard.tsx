@@ -14,7 +14,7 @@ const PdfCard: React.FC = () => {
           IELTS ভালো score করার সেরা Strategies <br />
           জানুন সেরাদের গাইডলাইনে।
         </p>
-        <button className="!bg-green-600 text-black font-semibold px-4 py-2 rounded shadow hover:bg-gray-100 transition !border-none">
+        <button className="!bg-green-600 text-white font-semibold px-4 py-2 rounded shadow hover:bg-gray-100 transition !border-none">
           ফ্রি PDF Download করুন
         </button>
       </div>
